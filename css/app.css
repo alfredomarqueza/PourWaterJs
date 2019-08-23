@@ -4,6 +4,7 @@
     overflow:auto;    
     padding:10px;
     font-family: monospace;
+    display: inline-block;
 }
 
 .input1 {

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @param {number[]} heights
  * @param {number} V
@@ -58,4 +56,4 @@ function tryRight(heights, K) {
   return lowestHeightIndex;
 }
 
-module.exports ={ pourWater}
+module.exports = { pourWater }

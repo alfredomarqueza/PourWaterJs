@@ -2,17 +2,65 @@
 <html>
 
 <head>
-  <script  src="dist/lib.js"></script>
-
+  <script src="dist/lib.js"></script>
+  <link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
 
-  <p id="demo"></p>
+  <h1>Pour Water II</h1>
+  <div>
+    <input type="text" class="input1" id="inputText" size="50" value="[1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1]" />
+    <br /><br />
+    <button class="button8" onclick="pourWaterClick()">Pour Water</button>
+  </div>
+  <br />
+  <div class="codebox">
+    <p id="inputBox"></p>
+  </div>
 
-  <script >
+  <div class="codebox">
+    <p id="resultBox"></p>
+  </div>
 
-    document.getElementById("demo").innerHTML = lib.pourWater([1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1], 5, 2);
+  <script>
+    function pourWaterClick() {
+
+      let inputArray = document.getElementById("inputText").value.replace(/\[|\]/g, "").split(",");
+
+      document.getElementById("inputBox").innerHTML = showGraph(inputArray, inputArray);
+
+      const clonedInputArray = [...inputArray];
+
+      document.getElementById("resultBox").innerHTML = showGraph(clonedInputArray, lib.pourWater(inputArray, 5, 2));
+
+    }
+
+    function showGraph(initialState, pouredWater) {
+
+
+      let floors = '&nbsp;0123456789...';
+      for (let f = 1; f < 5; f++) {
+        let currentFloor = '';
+        for (let p = 0; p < pouredWater.length; p++) {
+          if (pouredWater[p] >= f) {
+            if (initialState[p] != pouredWater[p] && f > initialState[p]) {
+              currentFloor += "w";
+            } else {
+              currentFloor += "#";
+            }
+          } else {
+            currentFloor += "&nbsp;";
+          }
+
+        }
+        floors = "#" + currentFloor + "#" + "<br/>" + floors;
+
+      }
+      return floors;
+    }
+
+
   </script>
 
 </body>
